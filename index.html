@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATIN KIM × GAHYUN — 면접 올인원</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F0EA; --ink:#141414; --paper:#FFFFFF; --acid:#CDF244; --acid-d:#9DC70B;
+  --silver:#D9D9D9; --red:#FF4D2E; --blue:#2D46FF; --muted:#8A8A82;
+  --radius:18px; --bd:1.5px solid #141414;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:74px}
+body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans KR',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.disp{font-family:'Archivo Black','IBM Plex Sans KR',sans-serif;letter-spacing:-.02em}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+section{padding:44px 0 8px}
+
+/* marquee */
+.marquee{background:var(--ink);color:var(--acid);overflow:hidden;white-space:nowrap;padding:8px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.marquee span{display:inline-block;animation:mq 22s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(243,240,234,.92);backdrop-filter:blur(8px);border-bottom:var(--bd)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:var(--bd);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:700;background:var(--paper);text-decoration:none;transition:.15s}
+.chip:hover{background:var(--acid)}
+.chip.hot{background:var(--ink);color:var(--acid)}
+
+/* hero */
+.hero{padding:52px 0 30px;position:relative}
+.kicker{display:inline-block;background:var(--acid);border:var(--bd);border-radius:999px;padding:4px 14px;font-size:12px;font-weight:700;letter-spacing:.08em;margin-bottom:16px}
+h1.big{font-size:clamp(40px,10vw,74px);line-height:.98;text-transform:uppercase}
+h1.big .x{color:transparent;-webkit-text-stroke:1.6px var(--ink)}
+.hero-sub{margin-top:14px;font-size:15px;max-width:560px}
+.dday{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap}
+.dcell{background:var(--ink);color:#fff;border-radius:14px;padding:10px 14px;min-width:74px;text-align:center}
+.dcell b{display:block;font-size:26px;font-family:'Archivo Black';color:var(--acid)}
+.dcell small{font-size:10px;letter-spacing:.14em;color:#bbb}
+.meta-tags{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px}
+.mtag{border:var(--bd);border-radius:8px;background:var(--paper);padding:4px 10px;font-weight:500}
+
+/* headings */
+h2.sec{font-size:clamp(24px,6vw,34px);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:6px}
+h2.sec .no{font-size:13px;background:var(--ink);color:var(--acid);border-radius:8px;padding:3px 9px;font-family:'Archivo Black'}
+.sec-sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+
+/* cards */
+.card{background:var(--paper);border:var(--bd);border-radius:var(--radius);padding:20px;margin-bottom:14px;box-shadow:4px 4px 0 var(--ink)}
+.card.flat{box-shadow:none}
+.card h3{font-size:16px;margin-bottom:8px}
+.src{font-size:11px;color:var(--muted)}
+.src a{color:var(--blue);text-decoration:none;font-weight:500}
+.src a:hover{text-decoration:underline}
+
+/* stats */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:560px){.stat-grid{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--paper);border:var(--bd);border-radius:var(--radius);padding:16px 14px;box-shadow:4px 4px 0 var(--ink)}
+.stat b{display:block;font-family:'Archivo Black';font-size:clamp(20px,5vw,28px);line-height:1.1}
+.stat span{font-size:12px;color:var(--muted)}
+.stat.lift{background:var(--acid)}
+.stat.lift span{color:#4a5205}
+
+/* timeline */
+.tl{position:relative;margin-left:10px;padding-left:26px;border-left:2px dashed var(--ink)}
+.tl-item{position:relative;padding-bottom:20px}
+.tl-item::before{content:"";position:absolute;left:-34px;top:6px;width:14px;height:14px;border:var(--bd);border-radius:50%;background:var(--paper)}
+.tl-item.hit::before{background:var(--acid)}
+.tl-item .yr{font-family:'Archivo Black';font-size:14px;background:var(--ink);color:#fff;display:inline-block;padding:2px 10px;border-radius:7px;margin-bottom:5px}
+.tl-item p{font-size:14px}
+
+/* bar chart */
+.chart{display:flex;flex-direction:column;gap:10px}
+.bar-row{display:grid;grid-template-columns:52px 1fr 74px;align-items:center;gap:10px;font-size:13px}
+.bar-track{background:#E7E3DA;border-radius:8px;height:30px;border:1.5px solid #cfcabe;overflow:hidden}
+.bar{height:100%;border-radius:6px;background:repeating-linear-gradient(-45deg,var(--ink),var(--ink) 8px,#2b2b2b 8px,#2b2b2b 16px);animation:grow 1.1s ease-out}
+.bar.acid{background:var(--acid);border-right:var(--bd)}
+@keyframes grow{from{width:0}}
+.bar-val{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+
+/* channel board */
+.ch-grid{display:grid;gap:12px}
+@media(min-width:600px){.ch-grid{grid-template-columns:repeat(3,1fr)}}
+.ch{border:var(--bd);border-radius:var(--radius);padding:16px;background:var(--paper)}
+.ch h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:50%;border:var(--bd);display:inline-block}
+.dot.g{background:var(--acid)} .dot.k{background:var(--ink)} .dot.r{background:var(--red)}
+.ch ul{list-style:none;font-size:13.5px}
+.ch li{padding:5px 0;border-bottom:1px dashed #ddd}
+.ch li:last-child{border:none}
+.badge{display:inline-block;background:var(--acid);border:1px solid var(--ink);border-radius:6px;font-size:10.5px;font-weight:700;padding:1px 6px;margin-left:4px}
+
+/* people */
+.pp{display:flex;gap:14px;align-items:flex-start}
+.avatar{flex:0 0 54px;height:54px;border-radius:50%;border:var(--bd);display:flex;align-items:center;justify-content:center;font-family:'Archivo Black';font-size:18px;background:var(--acid)}
+.avatar.k{background:var(--ink);color:#fff}
+.avatar.s{background:var(--silver)}
+.pp h3{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.role{font-size:10.5px;background:var(--ink);color:var(--acid);border-radius:6px;padding:2px 8px;letter-spacing:.06em}
+.warn{background:#FFF3D9;border:1.5px dashed var(--red);border-radius:12px;padding:10px 14px;font-size:13px;margin-top:10px}
+
+/* culture flags */
+.flags{display:grid;gap:12px}
+@media(min-width:600px){.flags{grid-template-columns:1fr 1fr}}
+.flag{border:var(--bd);border-radius:var(--radius);padding:16px}
+.flag.green{background:#EDF7D8}
+.flag.red{background:#FBE3DC}
+.flag h4{font-size:14px;margin-bottom:8px}
+.flag ul{list-style:none;font-size:13.5px}
+.flag li{padding:4px 0 4px 20px;position:relative}
+.flag.green li::before{content:"🟢";position:absolute;left:0;font-size:10px;top:8px}
+.flag.red li::before{content:"🔴";position:absolute;left:0;font-size:10px;top:8px}
+.meter{margin:14px 0 4px}
+.meter .m-row{display:grid;grid-template-columns:110px 1fr 40px;gap:8px;align-items:center;font-size:12.5px;margin-bottom:7px}
+.m-track{background:#E7E3DA;height:12px;border-radius:99px;border:1px solid #cfcabe;overflow:hidden}
+.m-fill{height:100%;border-radius:99px;background:var(--ink)}
+.m-fill.low{background:var(--red)}
+.m-fill.hi{background:var(--acid-d)}
+
+/* rivals */
+table.rv{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--paper);border:var(--bd);border-radius:var(--radius);overflow:hidden}
+.rv th{background:var(--ink);color:#fff;text-align:left;padding:10px 12px;font-size:12px;letter-spacing:.08em}
+.rv td{padding:10px 12px;border-top:1px solid #e5e1d8}
+.rv tr.me{background:var(--acid);font-weight:700}
+
+/* quest */
+.stage{border:var(--bd);border-radius:var(--radius);background:var(--paper);margin-bottom:16px;overflow:hidden;box-shadow:4px 4px 0 var(--ink)}
+.stage-head{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--ink);color:#fff}
+.lv{font-family:'Archivo Black';font-size:11px;background:var(--acid);color:var(--ink);border-radius:7px;padding:3px 9px;letter-spacing:.05em}
+.stage-head h3{font-size:16px}
+.stage-body{padding:18px}
+.quest-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed #e0dcd2;font-size:14px}
+.quest-item:last-child{border:none}
+.quest-item input{margin-top:4px;width:17px;height:17px;accent-color:var(--acid-d);flex:0 0 auto}
+.quest-item label{cursor:pointer}
+.quest-item input:checked+label{text-decoration:line-through;color:var(--muted)}
+.hp{position:sticky;bottom:12px;z-index:40;margin:10px 0;background:var(--ink);border-radius:14px;padding:10px 16px;color:#fff;display:flex;align-items:center;gap:12px;font-size:12px}
+.hp-track{flex:1;background:#3a3a3a;height:14px;border-radius:99px;overflow:hidden}
+.hp-fill{height:100%;background:var(--acid);width:0%;transition:.3s;border-radius:99px}
+.hp b{color:var(--acid);font-family:'Archivo Black'}
+.wcard{border:1.5px solid var(--ink);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:#FAF8F3}
+.wcard b{display:block;font-size:14px}
+.wcard span{font-size:13px;color:#444}
+.wcard .num{font-family:'Archivo Black';color:var(--acid-d);margin-right:6px}
+details.qa{border:1.5px solid var(--ink);border-radius:12px;margin-bottom:9px;background:#FAF8F3;overflow:hidden}
+details.qa summary{padding:12px 14px;font-weight:700;font-size:14px;cursor:pointer;list-style:none;display:flex;gap:8px;align-items:center}
+details.qa summary::before{content:"Q";font-family:'Archivo Black';background:var(--ink);color:var(--acid);border-radius:6px;padding:1px 7px;font-size:11px}
+details.qa[open] summary{background:var(--acid)}
+details.qa .a{padding:4px 14px 14px;font-size:13.5px;border-top:1px dashed #ddd}
+details.qa .a::before{content:"A. ";font-weight:700;color:var(--acid-d)}
+.talk{background:var(--ink);color:#fff;border-radius:14px;padding:16px;font-size:14px;margin-top:6px}
+.talk b{color:var(--acid)}
+
+/* cheat */
+.cheat{display:grid;gap:10px}
+@media(min-width:600px){.cheat{grid-template-columns:1fr 1fr}}
+.cheat .c{border:var(--bd);border-radius:12px;padding:12px 14px;background:var(--paper);font-size:13px}
+.cheat .c b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+
+/* footer */
+footer{margin-top:50px;background:var(--ink);color:#999;padding:34px 0 60px;font-size:12px}
+footer h4{color:#fff;font-size:13px;margin-bottom:10px;letter-spacing:.1em}
+footer a{color:var(--acid);text-decoration:none}
+footer li{margin-bottom:5px;list-style:none}
+.foot-note{margin-top:18px;color:#666}
+</style>
+</head>
+<body>
+
+<div class="marquee"><span>MATIN KIM ✶ INTERVIEW D-DAY 07.09 THU 10:00 PANGYO ✶ 이지윤 부사장 + 영업실장 ✶ ONLINE MD ✶ GAHYUN PARK 10YRS COMMERCE & GROWTH ✶ MATIN KIM ✶ INTERVIEW D-DAY 07.09 THU 10:00 PANGYO ✶ 이지윤 부사장 + 영업실장 ✶ ONLINE MD ✶ GAHYUN PARK 10YRS COMMERCE & GROWTH ✶&nbsp;</span></div>
+
+<nav><div class="chips">
+<a class="chip hot" href="#quest">🎮 합격 퀘스트</a>
+<a class="chip" href="#snapshot">스냅샷</a>
+<a class="chip" href="#history">히스토리</a>
+<a class="chip" href="#money">돈</a>
+<a class="chip" href="#channel">채널</a>
+<a class="chip" href="#people">면접관</a>
+<a class="chip" href="#culture">분위기</a>
+<a class="chip" href="#rival">경쟁</a>
+<a class="chip" href="#cheat">치트시트</a>
+<a class="chip" href="#verdict">판단</a>
+</div></nav>
+
+<div class="wrap">
+
+<!-- HERO -->
+<header class="hero">
+<span class="kicker">INTERVIEW BRIEFING · 2026.07.05</span>
+<h1 class="big disp">MATIN<br>KIM <span class="x">×</span> GAHYUN</h1>
+<p class="hero-sub">블로그마켓에서 <b>매출 2,201억</b>이 된 브랜드와, 자사몰을 <b>0에서 매출 1위 채널</b>로 만든 사람의 만남. 이 페이지 하나로 목요일을 이긴다.</p>
+<div class="dday" id="dday">
+<div class="dcell"><b id="dd">-</b><small>DAYS</small></div>
+<div class="dcell"><b id="dh">-</b><small>HOURS</small></div>
+<div class="dcell"><b id="dm">-</b><small>MIN</small></div>
+</div>
+<div class="meta-tags">
+<span class="mtag">📅 7/9(목) 10:00</span>
+<span class="mtag">📍 판교로 242, 7층</span>
+<span class="mtag">👥 이지윤 부사장 · 영업실장</span>
+<span class="mtag">🎯 목표: 합격 → 오퍼 → 협상</span>
+</div>
+</header>
+
+<!-- SNAPSHOT -->
+<section id="snapshot">
+<h2 class="sec disp"><span class="no">01</span>SNAPSHOT</h2>
+<p class="sec-sub">숫자로 보는 마뗑킴 — 전부 출처 있음, 안심하고 인용 가능</p>
+<div class="stat-grid">
+<div class="stat lift"><b>2,201억</b><span>2025 매출 (+34%)</span></div>
+<div class="stat"><b>446억</b><span>2025 영업이익 · 이익률 ~30%</span></div>
+<div class="stat"><b>60+9</b><span>국내 60 · 해외 9개 매장</span></div>
+<div class="stat"><b>~60명</b><span>본사 인원 (판교)</span></div>
+<div class="stat"><b>+450%</b><span>카톡선물하기 1년 성장</span></div>
+<div class="stat"><b>90%+</b><span>플래그십 외국인 비중</span></div>
+</div>
+<p class="src" style="margin-top:10px">출처: <a href="https://www.newsspace.kr/news/article.html?no=13912">뉴스스페이스 2026.5</a> · <a href="https://fashionbiz.co.kr/article/215762">패션비즈</a> · <a href="https://www.jobkorea.co.kr/recruit/co_read/c/mkhago21">잡코리아 기업정보</a> · <a href="https://www.news1.kr/industry/distribution/5716169">뉴스1</a> · <a href="https://www.ktnews.com/news/articleView.html?idxno=139855">한국섬유신문</a></p>
+</section>
+
+<!-- HISTORY -->
+<section id="history">
+<h2 class="sec disp"><span class="no">02</span>HISTORY</h2>
+<p class="sec-sub">6만원 사입 → 2,200억. 굴곡을 알면 대화가 깊어진다</p>
+<div class="tl">
+<div class="tl-item"><span class="yr">2015</span><p>김다인(92년생), 블로그마켓 시작. 동대문 사입 6만원 → 실패 → 어머니께 30만원 빌려 재기 <span class="src">· <a href="https://nwww.newsis.com/view/NISX20260427_0003608110">뉴시스</a></span></p></div>
+<div class="tl-item"><span class="yr">2018</span><p>㈜마뗑킴 법인 설립 (8월) <span class="src">· <a href="https://www.jobkorea.co.kr/recruit/co_read/c/mkhago21">잡코리아</a></span></p></div>
+<div class="tl-item"><span class="yr">2020</span><p>급성장 속 경영 한계, <b>파산 위기</b> (매출 50억) <span class="src">· <a href="https://v.daum.net/v/20251025111812224">매일경제</a></span></p></div>
+<div class="tl-item hit"><span class="yr">2021</span><p><b>하고하우스(대명화학 계열) 지분 60% 인수</b> → 인큐베이팅 개시. 2년 만에 10배 성장 <span class="src">· <a href="https://www.longblack.co/note/769">롱블랙</a>, <a href="https://www.hankyung.com/article/2024122949311">한국경제</a></span></p></div>
+<div class="tl-item"><span class="yr">2022</span><p>오프라인 1호점 더현대 대구 — 온라인 100% → 투트랙 전환. 매출 500억 <span class="src">· <a href="https://v.daum.net/v/20251025111812224">매일경제</a></span></p></div>
+<div class="tl-item"><span class="yr">2023</span><p>더현대 서울 첫 주 5억. 10월 <b>김다인 대표 사임</b>(지분 유지 보도) → 홍정우 대표 겸임 <span class="src">· <a href="https://www.fnnews.com/news/202310241417204662">파이낸셜뉴스</a>, <a href="https://www.marieclairekorea.com/fashion/2023/10/matin-kim/">마리끌레르</a></span></p></div>
+<div class="tl-item hit"><span class="yr">2024</span><p>매출 1,288억(+65%) · 영업이익 387억. 홍콩 시작으로 해외 진출 <span class="src">· <a href="https://fashionbiz.co.kr/article/215762">패션비즈</a></span></p></div>
+<div class="tl-item hit"><span class="yr">2025</span><p>도쿄 시부야 진출(첫날 800만엔) · APEC 공식 협찬 · 매출 2,201억 <span class="src">· <a href="https://www.mt.co.kr/living/2025/12/01/2025112015312571060">머니투데이</a>, <a href="https://www.newsspace.kr/news/article.html?no=13912">뉴스스페이스</a></span></p></div>
+<div class="tl-item"><span class="yr">2026</span><p>나고야 파르코 2호점 · 첫 아이웨어 · 남성 브랜드 준비 · 제노/리즈 앰버서더 <span class="src">· <a href="https://www.ddaily.co.kr/page/view/2026032709304543499">디지털데일리</a>, <a href="https://sports.khan.co.kr/article/202607012344003/">스포츠경향</a></span></p></div>
+</div>
+</section>
+
+<!-- MONEY -->
+<section id="money">
+<h2 class="sec disp"><span class="no">03</span>MONEY</h2>
+<p class="sec-sub">매출 성장 곡선 — 5년 만에 44배</p>
+<div class="card">
+<div class="chart">
+<div class="bar-row"><span>2020</span><div class="bar-track"><div class="bar" style="width:3%"></div></div><span class="bar-val">50억</span></div>
+<div class="bar-row"><span>2021</span><div class="bar-track"><div class="bar" style="width:7%"></div></div><span class="bar-val">150억</span></div>
+<div class="bar-row"><span>2022</span><div class="bar-track"><div class="bar" style="width:23%"></div></div><span class="bar-val">500억</span></div>
+<div class="bar-row"><span>2023</span><div class="bar-track"><div class="bar" style="width:45%"></div></div><span class="bar-val">~1,000억</span></div>
+<div class="bar-row"><span>2024</span><div class="bar-track"><div class="bar" style="width:58%"></div></div><span class="bar-val">1,288억</span></div>
+<div class="bar-row"><span>2025</span><div class="bar-track"><div class="bar acid" style="width:100%"></div></div><span class="bar-val">2,201억</span></div>
+</div>
+<p class="src" style="margin-top:12px">2024 영업이익 387억(이익률 ~30%, 업계 최상위) → 2025 446억. ※2024 매출은 1,288억(<a href="https://fashionbiz.co.kr/article/215762">패션비즈</a>) vs 1,500억(<a href="https://www.mt.co.kr/living/2025/12/01/2025112015312571060">머니투데이</a>) 보도 상충 — 기준 차이 추정. 2025는 운영사 기준(<a href="https://www.newsspace.kr/news/article.html?no=13912">뉴스스페이스</a>). 하고하우스 연결은 2025년 4,500억 전망(<a href="https://v.daum.net/v/20251214182648193">한국경제</a>)</p>
+</div>
+</section>
+
+<!-- CHANNEL -->
+<section id="channel">
+<h2 class="sec disp"><span class="no">04</span>CHANNEL MAP</h2>
+<p class="sec-sub">온라인 MD가 뛸 운동장 — 여기가 내 얘기의 무대</p>
+<div class="ch-grid">
+<div class="ch"><h4><span class="dot g"></span>ONLINE</h4><ul>
+<li>자사몰 matinkim.com + 앱</li>
+<li>무신사 브랜드관</li>
+<li>W컨셉</li>
+<li>네이버 <span class="badge">25.9 입점</span></li>
+<li>카톡선물하기 <span class="badge">+450%</span></li>
+<li>아마존 US <span class="badge">NEW</span></li>
+</ul></div>
+<div class="ch"><h4><span class="dot k"></span>OFFLINE</h4><ul>
+<li>국내 약 60개 매장</li>
+<li>매출: 명동 &gt; 성수 &gt; 도산</li>
+<li>플래그십 외국인 90%+</li>
+<li>더현대 · 롯데 본점 등</li>
+</ul></div>
+<div class="ch"><h4><span class="dot r"></span>GLOBAL</h4><ul>
+<li>홍콩 4 · 대만 2 · 마카오 2</li>
+<li>일본: 시부야+나고야 <span class="badge">무신사 총판</span></li>
+<li>5년 2,500억 · 15호점 목표</li>
+<li>태국 · 동유럽 확장 발표</li>
+</ul></div>
+</div>
+<p class="src" style="margin-top:10px">출처: <a href="https://www.ddaily.co.kr/page/view/2025090815542097716">디지털데일리(네이버)</a> · <a href="https://www.news1.kr/industry/distribution/5716169">뉴스1(카카오)</a> · <a href="https://economist.co.kr/article/view/ecn202411120034">이코노미스트(무신사 총판)</a> · <a href="https://www.ktnews.com/news/articleView.html?idxno=139855">한국섬유신문</a> · <a href="https://fpost.co.kr/board/bbs/board.php?bo_table=newsinnews&wr_id=7029">FPOST(1,615억 계약)</a></p>
+<div class="talk">💡 <b>내 무대 포인트</b> — "온라인에서 태어난 브랜드가 오프라인·해외로 무게중심을 옮기는 지금, 자사몰·앱은 <b>팬덤 데이터를 쥔 이익 채널</b>로 다시 세워야 한다"가 나의 핵심 프레임. 카톡선물하기 +450%는 내가 WAAC에서 판매율 2배 만든 바로 그 채널.</div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people">
+<h2 class="sec disp"><span class="no">05</span>면접관 파일</h2>
+<p class="sec-sub">두 명의 보스, 두 개의 언어</p>
+<div class="card">
+<div class="pp"><div class="avatar disp">LJY</div><div>
+<h3>이지윤 부사장 <span class="role">MAIN BOSS</span></h3>
+<p style="font-size:13.5px;margin-top:4px">확인된 공개 기록: 2023년 롱블랙 인터뷰에 <b>하고하우스(당시 하고엘앤에프) 브랜드전략본부장</b>으로 등장. 마뗑킴을 키운 투자사에서 브랜드 발굴·인큐베이팅 전략을 담당한 당사자. "마뗑킴 부사장" 직함 보도는 아직 없음(비공개 인사로 추정).</p>
+<p style="font-size:13.5px;margin-top:6px">🗣 예상 언어: <b>브랜드 전략·포트폴리오·구조</b>. 감각 어필보다 "채널 전략 + 수익 구조 + 브랜드 이해"의 조합이 통할 상대.</p>
+<p class="src" style="margin-top:6px">출처: <a href="https://www.longblack.co/note/769">롱블랙 note 769 (하고엘앤에프 인터뷰)</a></p>
+</div></div>
+</div>
+<div class="card">
+<div class="pp"><div class="avatar s disp">?</div><div>
+<h3>영업실장 <span class="role">SUB BOSS</span></h3>
+<p style="font-size:13.5px;margin-top:4px">공개 정보 없음. 채용공고 구조상 영업MD(5년+)·이커머스 영업기획 조직의 책임자로 추정. 참고로 하고하우스에는 유기천 영업마케팅총괄부문장이 있음(동일인 여부 확인 불가).</p>
+<p style="font-size:13.5px;margin-top:6px">🗣 예상 언어: <b>판매율·재고·수수료·이익</b>. 숫자 먼저 말하면 신뢰를 얻는 상대.</p>
+<p class="src" style="margin-top:6px">출처: <a href="https://www.jobkorea.co.kr/company/42829707/recruit">잡코리아 채용이력</a> · <a href="https://www.longblack.co/note/769">롱블랙</a></p>
+</div></div>
+</div>
+<div class="card flat" style="background:#EFEBE2">
+<div class="pp"><div class="avatar k disp">+</div><div>
+<h3 style="font-size:14px">배경 인물 (알고만 있기)</h3>
+<p style="font-size:13px;margin-top:4px"><b>홍정우 대표</b> — 하고하우스·마뗑킴 겸임, SK네트웍스 출신. "단순 투자가 아닌 인큐베이팅" 철학 · <a class="src" href="https://www.longblack.co/note/769" style="color:var(--blue)">롱블랙</a><br><b>김다인 창업자</b> — 2023.10 사임, 현 다이닛 대표 · <a class="src" href="https://nwww.newsis.com/view/NISX20260427_0003608110" style="color:var(--blue)">뉴시스</a></p>
+<div class="warn">⚠️ 김다인 사임·다이닛 얘기는 <b>먼저 꺼내지 말 것</b>. 내부적으로 민감할 수 있는 주제. 상대가 꺼내면 자연스럽게 따라가기.</div>
+</div></div>
+</div>
+</section>
+
+<!-- CULTURE -->
+<section id="culture">
+<h2 class="sec disp"><span class="no">06</span>분위기 리포트</h2>
+<p class="sec-sub">후기 기반(표본 24건) — 판단 재료로만, 면접장에선 입 밖에 내지 않기</p>
+<div class="card">
+<div class="meter">
+<div class="m-row"><span>잡플래닛 종합</span><div class="m-track"><div class="m-fill low" style="width:38%"></div></div><b>1.9</b></div>
+<div class="m-row"><span>복지 평점</span><div class="m-track"><div class="m-fill hi" style="width:88%"></div></div><b>4.4</b></div>
+<div class="m-row"><span>추천율</span><div class="m-track"><div class="m-fill low" style="width:25%"></div></div><b>25%</b></div>
+<div class="m-row"><span>CEO 지지율</span><div class="m-track"><div class="m-fill low" style="width:21%"></div></div><b>21%</b></div>
+<div class="m-row"><span>면접 합격률</span><div class="m-track"><div class="m-fill" style="width:17%"></div></div><b>17%</b></div>
+</div>
+<p class="src">출처: <a href="https://www.jobplanet.co.kr/companies/348323/reviews/%EB%A7%88%EB%97%91%ED%82%B4">잡플래닛 리뷰</a> · <a href="https://www.jobplanet.co.kr/companies/348323/interviews/%EB%A7%88%EB%97%91%ED%82%B4">면접 후기</a> · <a href="https://www.jobplanet.co.kr/companies/348323/benefits/%EB%A7%88%EB%97%91%ED%82%B4">복지</a></p>
+</div>
+<div class="flags">
+<div class="flag green"><h4>GREEN FLAGS</h4><ul>
+<li>복지 평점 4.4 — 검진(배우자 포함)·할인·절반근무·문화데이·자기계발비</li>
+<li>인센티브/성과급 존재 → 협상 카드</li>
+<li>2년 연속 고성장 + 이익률 30% = 보상 여력</li>
+<li>고용노동부 강소기업 선정</li>
+</ul></div>
+<div class="flag red"><h4>RED FLAGS</h4><ul>
+<li>"규모에 비해 사람이 너무 부족" — 인력난 후기</li>
+<li>"잘하는 사람만 갈려나감" / "워라밸 포기"</li>
+<li>3년간 채용 57회(60명 조직) → 이직률 시사</li>
+<li>연봉 표본: 초임 3,200 · 평균 3,439 (주니어 기준, 시니어 미공개)</li>
+</ul></div>
+</div>
+<p class="src" style="margin-top:8px">연봉 출처: <a href="https://www.jobkorea.co.kr/recruit/co_read/c/mkhago21">잡코리아 기업정보</a></p>
+</section>
+
+<!-- RIVAL -->
+<section id="rival">
+<h2 class="sec disp"><span class="no">07</span>경쟁 구도</h2>
+<p class="sec-sub">'3마' 전쟁 — 2024 매출 기준</p>
+<table class="rv">
+<tr><th>브랜드</th><th>매출</th><th>무기</th></tr>
+<tr><td>마리떼 프랑소와 저버</td><td>1,507억</td><td>라이선스+로고</td></tr>
+<tr class="me"><td>마뗑킴 ★</td><td>1,288억 (영익 387억)</td><td>팬덤+드롭, 핏·실루엣</td></tr>
+<tr><td>마르디 메크르디</td><td>1,087억</td><td>꽃 자수 로고</td></tr>
+<tr><td>이미스</td><td>1,000억+</td><td>볼캡 등 아이템</td></tr>
+<tr><td>스탠드오일</td><td>585억</td><td>비레더 백</td></tr>
+</table>
+<p class="src" style="margin-top:10px">출처: <a href="https://www.businesspost.co.kr/BP?command=article_view&num=394531">비즈니스포스트</a> · <a href="https://www.sedaily.com/article/20038854">서울경제</a> · <a href="https://fashionbiz.co.kr/article/215762">패션비즈</a></p>
+<div class="talk">💡 <b>면접용 한 줄</b> — "마르디·마리떼가 로고 아이템 브랜드라면, 마뗑킴은 핏과 서사의 브랜드라 카테고리 확장이 자유롭다. 다만 유행 소멸론에는 해외·라인 다변화가 답이고, 온라인 채널의 팬덤 데이터가 그 방어선이라고 생각한다."</div>
+</section>
+
+<!-- QUEST -->
+<section id="quest">
+<h2 class="sec disp"><span class="no">08</span>합격 퀘스트</h2>
+<p class="sec-sub">🎮 5 STAGE — 체크할수록 아래 게이지가 찬다</p>
+
+<div class="talk" style="margin-bottom:16px">🧭 <b>판 읽기</b> — JD가 없다 = <b>사람을 보고 자리를 만드는 채용</b>. HR도 팀을 모른다 = 역할 정의를 면접장에서 함께 만드는 사람이 이긴다. 모든 답변은 <b>"전략 한 줄(부사장용) + 숫자 한 줄(영업실장용)"</b> 세트로.</div>
+
+<div class="stage">
+<div class="stage-head"><span class="lv">STAGE 1</span><h3>정찰 — 화요일까지</h3></div>
+<div class="stage-body">
+<div class="quest-item"><input type="checkbox" id="q1"><label for="q1">자사몰·앱 가입 → 구매 동선·기획전·재입고 알림 체험, 개선점 2~3개 메모</label></div>
+<div class="quest-item"><input type="checkbox" id="q2"><label for="q2">무신사 브랜드관 + 카톡선물하기 마뗑킴관 훑기</label></div>
+<div class="quest-item"><input type="checkbox" id="q3"><label for="q3">성수 or 명동 플래그십 방문 (외국인 비중 직접 목격 → 면접 멘트)</label></div>
+<div class="quest-item"><input type="checkbox" id="q4"><label for="q4">착장 결정: 무채색·미니멀 (마뗑킴 1개 자연스럽게, 억지면 생략)</label></div>
+<div class="quest-item"><input type="checkbox" id="q5"><label for="q5">인사팀에 판교 정확한 주소·소요시간 확인</label></div>
+</div>
+</div>
+
+<div class="stage">
+<div class="stage-head"><span class="lv">STAGE 2</span><h3>장비 — 내 카드 5장 암기</h3></div>
+<div class="stage-body">
+<div class="wcard"><b><span class="num">01</span>자사몰 0→40%</b><span>G/FORE 자사몰 런칭 end-to-end · 3년 YoY 120%+ · 누적 100억+ · 2026 매출 1위 채널</span></div>
+<div class="wcard"><b><span class="num">02</span>카톡선물하기 판매율 2배</b><span>WAAC 단독상품 패키지 — 마뗑킴 선물하기 +450%와 직결되는 최강 연결고리</span></div>
+<div class="wcard"><b><span class="num">03</span>데이터 설득</b><span>EDW/SQL로 광고 통념 반증 → 제조·영업 2년 설득 → 단독상품 물량 3억→20억</span></div>
+<div class="wcard"><b><span class="num">04</span>멤버십/CRM</b><span>신규가입·앱DL 65% 견인 · VIP LMS 오픈율 5배 → 드롭 팬덤의 CRM 자산화 그림</span></div>
+<div class="wcard"><b><span class="num">05</span>아마존 US 런칭</b><span>베스트셀러 배지 · 영어 업무 가능 → 해외 확장에 즉시 기여</span></div>
+<div class="quest-item"><input type="checkbox" id="q6"><label for="q6">카드 5장 숫자까지 안 보고 말하기</label></div>
+<div class="quest-item"><input type="checkbox" id="q7"><label for="q7">오프닝 30초 소리 내어 3회 연습</label></div>
+<div class="talk">🎤 <b>오프닝 30초</b> — "이커머스 10년, 온라인 MD와 퍼포먼스 마케팅을 한 사람이 통합 수행하며 G/FORE 자사몰을 0에서 브랜드 매출 1위 채널로 키웠습니다. 온라인에서 태어난 마뗑킴이 오프라인·해외로 확장하는 지금, 온라인 채널을 <b>팬덤 데이터와 수익성의 축</b>으로 다시 세우는 일을 하고 싶습니다."</div>
+</div>
+</div>
+
+<div class="stage">
+<div class="stage-head"><span class="lv">STAGE 3</span><h3>보스전 — 예상 질문 11 (탭해서 열기)</h3></div>
+<div class="stage-body">
+<details class="qa"><summary>왜 마뗑킴인가요?</summary><div class="a">오프닝 30초 + "골프웨어에서 검증한 프리미엄 D2C 공식을, 더 빠르고 팬덤이 강한 브랜드에서 실행하고 싶다."</div></details>
+<details class="qa"><summary>자사몰 성과를 말해보세요</summary><div class="a">카드01 풀버전. 핵심 훅: "수수료 0% 자사몰로 채널 믹스를 바꿔 <b>이익 구조</b>를 개선했다" — 영업실장 귀가 열리는 단어.</div></details>
+<details class="qa"><summary>무신사 같은 플랫폼 운영 경험은?</summary><div class="a">WAAC에서 10개+ 마켓플레이스(무신사·29CM·네이버·카카오 등) 입점·운영, 외부 채널 매출 비중 20→50%(1년).</div></details>
+<details class="qa"><summary>재고/판매율 관리는? (영업실장)</summary><div class="a">시즌 판매 분석 기반 재고 최적화(코오롱스포츠 제휴사 MD) + 채널 수수료·재고 노후화까지 반영한 프로모션 수익 설계(WAAC).</div></details>
+<details class="qa"><summary>데이터로 일한 사례?</summary><div class="a">카드03. "감이 아니라 데이터로 제조·영업을 2년 설득했다"는 스토리가 포인트. 결과: SKU 5→30+, 물량 3억→20억, 연 매출 1~3위 전부 단독상품.</div></details>
+<details class="qa"><summary>재구매/CRM 전략은?</summary><div class="a">카드04 + "마뗑킴의 드롭·재입고 사이클은 최고의 CRM 트리거. 재입고 알림 → 세그먼트 메시지 → 멤버십 등급으로 잇는 구조를 만들고 싶다."</div></details>
+<details class="qa"><summary>콜라보 경험 있나요?</summary><div class="a">G/FORE×BE@RBRICK·10cc 완판, WAAC×헬로키티 완판. "콜라보는 화제성보다 <b>신규 고객 유형</b>이 남는 게 성과" — 코치·아식스 콜라보 흐름과 연결.</div></details>
+<details class="qa"><summary>해외 경험은?</summary><div class="a">카드05. 아마존 US에서 브랜드(Regnax) 소싱→물류→CS까지 영어로 단독 수행, 베스트셀러 배지. 마뗑킴 아마존 입점·태국·일본 확장에 바로 기여 가능.</div></details>
+<details class="qa"><summary>대기업에서 60명 회사로, 괜찮겠어요?</summary><div class="a">"시스템은 10년간 배웠습니다. 이제 의사결정이 빠른 조직에서 결과로 증명하고 싶습니다. 실제로는 4개 대행사 + 8명 크로스펑셔널 팀을 직접 세팅·운영해왔어요."</div></details>
+<details class="qa"><summary>단점이 뭔가요?</summary><div class="a">"완성도 기준이 높아 일을 떠안는 경향 → 가이드·체크리스트·자동화 리포트 표준화로 팀 효율로 전환 중."</div></details>
+<details class="qa"><summary>여성복 경험이 없는데요?</summary><div class="a">"카테고리는 달라도 '팬덤 있는 프리미엄 브랜드의 노-디스카운트 D2C' 공식은 같습니다. 고객 데이터 보는 법은 카테고리를 가리지 않고요." + 정찰에서 찾은 개선점 2~3개 즉시 제시 = 몰입도 증명.</div></details>
+<div class="quest-item"><input type="checkbox" id="q8"><label for="q8">11문항 각 30초 내로 소리 내어 리허설</label></div>
+</div>
+</div>
+
+<div class="stage">
+<div class="stage-head"><span class="lv">STAGE 4</span><h3>역질문 — 정보는 여기서 얻는다</h3></div>
+<div class="stage-body">
+<div class="wcard"><b><span class="num">★</span>"제가 합류하면 소속 조직과 첫 6개월 최우선 과제는 무엇인가요? 마뗑킴 본체인지, 신규 브랜드 쪽인지도 궁금합니다."</b><span>HR도 몰랐던 정보 — 합격 후 판단의 핵심 데이터. 반드시 질문.</span></div>
+<div class="wcard"><b><span class="num">02</span>"자사몰 vs 플랫폼의 역할 구분을 앞으로 어떻게 가져가실 계획인가요?"</b><span>"자사몰을 이익 채널로 키우는 데 관심이 많다"로 마무리 → 내 포지셔닝 재강조</span></div>
+<div class="wcard"><b><span class="num">03</span>"해외 확장에서 온라인 MD가 관여할 영역이 있을까요?"</b><span>아마존 US 카드 재노출 기회</span></div>
+<div class="wcard"><b><span class="num">04</span>(영업실장에게) "온라인·오프라인 재고는 통합인가요, 분리인가요?"</b><span>실무 이해도 증명 + 실제 업무 환경 파악</span></div>
+<div class="quest-item"><input type="checkbox" id="q9"><label for="q9">역질문 4개 중 3개 암기 (★은 필수)</label></div>
+</div>
+</div>
+
+<div class="stage">
+<div class="stage-head"><span class="lv">STAGE 5</span><h3>보상 협상 — 오퍼가 온 다음의 게임</h3></div>
+<div class="stage-body">
+<div class="wcard"><b>원칙 1 — 먼저 숫자 말하지 않기</b><span>물으면: "현재 연봉 기준 +10~17% 밴드를 총보상 기준으로 희망합니다. 인센티브 구조에 따라 유연해요."</span></div>
+<div class="wcard"><b>원칙 2 — 기본급 / 인센티브 분리 확인</b><span>후기에 인센티브·성과급 존재 확인됨. 이익률 30% 회사 = 지급 여력 있음</span></div>
+<div class="wcard"><b>원칙 3 — 판교 통근은 연봉 카드가 아니다</b><span>근무 유연성(주 1~2회 재택, 시차출퇴근) 카드로, 반드시 오퍼 이후에만</span></div>
+<div class="wcard"><b>내 지렛대 3개</b><span>①JD 없는 시니어 채용 = 대체 후보 부재 ②이커머스 시니어(6년+) 반복 공고 = 채용난 ③현직 10년 대기업 커리어</span></div>
+<div class="talk">🏁 <b>마지막 한마디</b> — "온라인에서 시작해 오프라인·해외로 커진 브랜드가, 다시 온라인을 재정비해야 하는 시점입니다. 그 일을 제가 제일 잘합니다."</div>
+<div class="quest-item"><input type="checkbox" id="q10"><label for="q10">협상 3원칙 + 지렛대 숙지</label></div>
+</div>
+</div>
+
+<div class="hp"><span>PREP</span><div class="hp-track"><div class="hp-fill" id="hpfill"></div></div><b id="hptext">0%</b></div>
+</section>
+
+<!-- CHEAT -->
+<section id="cheat">
+<h2 class="sec disp"><span class="no">09</span>치트시트</h2>
+<p class="sec-sub">면접장 들어가기 직전 5분, 이것만</p>
+<div class="cheat">
+<div class="c"><b>매출</b>50억(20) → 500억(22) → 1,288억(24) → <b style="color:var(--acid-d);display:inline">2,201억(25)</b> · 영익 446억 · 이익률 30%</div>
+<div class="c"><b>매장</b>국내 60 + 해외 9 · 명동&gt;성수&gt;도산 · 외국인 90%+</div>
+<div class="c"><b>구조</b>대명화학 → 하고하우스(38개 브랜드) → 마뗑킴 · 대표 홍정우 · 60명 · 판교</div>
+<div class="c"><b>온라인</b>자사몰+앱 · 무신사 · W컨셉 · 네이버(25.9) · 카톡선물 +450% · 아마존</div>
+<div class="c"><b>일본</b>무신사 5년 총판 · 시부야 첫날 800만엔 · 나고야 2호점</div>
+<div class="c"><b>프로젝트</b>APEC 협찬 · KIMMATIN · 한글라인 · 아이웨어 · 남성 브랜드 · 코치/아식스 · 닝닝→리즈→제노</div>
+<div class="c"><b>경쟁</b>3마: 마리떼 1,507 · 마뗑킴 1,288 · 마르디 1,087 — 마뗑킴 = 로고 아닌 핏</div>
+<div class="c"><b>면접관</b>이지윤 부사장(하고 브랜드전략 출신 = 전략의 언어) · 영업실장(숫자의 언어)</div>
+<div class="c"><b>내 카드</b>자사몰 0→40% · 선물하기 2배 · 단독상품 3→20억 · 멤버십 65% · 아마존 US</div>
+<div class="c"><b>연봉</b>먼저 말하지 않기 → 목표 밴드(+10~17%) · 인센티브 분리 · 재택은 오퍼 후</div>
+</div>
+</section>
+
+<!-- VERDICT -->
+<section id="verdict">
+<h2 class="sec disp"><span class="no">10</span>객관적 판단</h2>
+<p class="sec-sub">합격은 목표, 입사는 선택 — 냉정하게</p>
+<div class="flags">
+<div class="flag green"><h4>가는 게 맞는 시나리오</h4><ul>
+<li>시니어로 채널/조직을 <b>세팅하는 역할</b>일 때 (커리어 자산 큼)</li>
+<li>해외 확장 초입 — 일본·태국·미국 경험 쌓을 기회</li>
+<li>이익률 30% = 인센티브 협상 여력 실존</li>
+</ul></div>
+<div class="flag red"><h4>다시 생각할 시나리오</h4><ul>
+<li>운영 인력으로 <b>갈리는 역할</b>일 때 (후기 리스크 현실화)</li>
+<li>역질문 ★에 명확한 답을 못 들었을 때</li>
+<li>판교 통근 + 재택 불가 조합일 때</li>
+</ul></div>
+</div>
+<div class="talk" style="margin-top:14px">⚖️ 오퍼를 받으면 <b>역할 범위 · 리포팅 라인 · 인센티브 구조 · 재택 여부</b> 4가지를 서면으로 확인한 뒤 결정. 이미 붙은 게임이라는 마음으로 — 여유가 최고의 협상 카드.</div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer><div class="wrap">
+<h4>SOURCES</h4>
+<ul>
+<li><a href="https://www.newsspace.kr/news/article.html?no=13912">뉴스스페이스 — 2025 실적</a> · <a href="https://fashionbiz.co.kr/article/215762">패션비즈 — 2024 실적</a> · <a href="https://v.daum.net/v/20251025111812224">매일경제 — 성장사</a></li>
+<li><a href="https://www.longblack.co/note/769">롱블랙 — 하고하우스·이지윤 본부장 인터뷰</a> · <a href="https://www.fnnews.com/news/202310241417204662">파이낸셜뉴스 — 김다인 사임</a> · <a href="https://nwww.newsis.com/view/NISX20260427_0003608110">뉴시스 — 창업자 이후</a></li>
+<li><a href="https://www.jobkorea.co.kr/recruit/co_read/c/mkhago21">잡코리아 — 기업정보</a> · <a href="https://www.jobkorea.co.kr/company/42829707/recruit">잡코리아 — 채용이력</a> · <a href="https://www.jobplanet.co.kr/companies/348323/reviews/%EB%A7%88%EB%97%91%ED%82%B4">잡플래닛 — 리뷰·면접·복지</a></li>
+<li><a href="https://economist.co.kr/article/view/ecn202411120034">이코노미스트 — 무신사 일본 총판</a> · <a href="https://www.news1.kr/industry/distribution/5716169">뉴스1 — 카카오선물하기</a> · <a href="https://www.ktnews.com/news/articleView.html?idxno=139855">한국섬유신문 — 채널</a> · <a href="https://www.businesspost.co.kr/BP?command=article_view&num=394531">비즈니스포스트 — 경쟁</a></li>
+</ul>
+<p class="foot-note">2026.07.05 리서치 기준 · 잡플래닛 수치는 후기 기반 주관 정보(표본 24건) · 2024 매출은 1,288억/1,500억 보도 상충(기준 차이 추정) · Made with Claude for GAHYUN PARK</p>
+</div></footer>
+
+<script>
+// D-day countdown → 2026-07-09 10:00 KST
+(function(){
+  var t=new Date("2026-07-09T10:00:00+09:00").getTime();
+  function tick(){
+    var d=t-Date.now();
+    if(d<0){document.getElementById("dday").innerHTML='<div class="dcell"><b>GO!</b><small>SHOWTIME</small></div>';return}
+    document.getElementById("dd").textContent=Math.floor(d/864e5);
+    document.getElementById("dh").textContent=Math.floor(d%864e5/36e5);
+    document.getElementById("dm").textContent=Math.floor(d%36e5/6e4);
+  }
+  tick();setInterval(tick,30000);
+})();
+// quest progress + persistence
+(function(){
+  var boxes=document.querySelectorAll('.quest-item input');
+  var store=null;
+  try{store=window.localStorage}catch(e){}
+  function update(){
+    var done=0;boxes.forEach(function(b){if(b.checked)done++});
+    var p=Math.round(done/boxes.length*100);
+    document.getElementById("hpfill").style.width=p+"%";
+    document.getElementById("hptext").textContent=p+"%";
+  }
+  boxes.forEach(function(b){
+    if(store&&store.getItem("mk_"+b.id)==="1")b.checked=true;
+    b.addEventListener("change",function(){
+      if(store){try{store.setItem("mk_"+b.id,b.checked?"1":"0")}catch(e){}}
+      update();
+    });
+  });
+  update();
+})();
+</script>
+</body>
+</html>
